@@ -5,18 +5,18 @@ services:
                 image: iotaledger/iri:latest
                 ports:
                         # Local API Port
-                        - "127.0.0.1:14266:14266"                           # <1>
+                        - "127.0.0.1:14266:14266"
                         # Remote API Port
-                        - "14265:14265"                                     # <2>
-                        - "14600:14600/udp"                                 # <3>
-                        - "15600:15600/tcp"                                 # <4>
+                        - "14265:14265"
+                        - "14600:14600/udp"
+                        - "15600:15600/tcp"
                 volumes:
-                        - ./iri.ini:/iri/conf/iri.ini:ro                    # <5>
-                        - ./data:/iri/data:rw                               # <6>
+                        - ./iri.ini:/iri/conf/iri.ini:ro
+                        - ./data:/iri/data:rw
                 environment:
-                        - JAVA_MAX_MEMORY=8192m                             # <7>
-                        - JAVA_MIN_MEMORY=256m                              # <8>
-                        - DOCKER_IRI_MONITORING_API_PORT_ENABLE=1           # <9>
+                        - JAVA_MAX_MEMORY=8192m
+                        - JAVA_MIN_MEMORY=256m
+                        - DOCKER_IRI_MONITORING_API_PORT_ENABLE=1
                 restart: unless-stopped
                 command: ["-c", "/iri/conf/iri.ini"]
                 network_mode: "host"
