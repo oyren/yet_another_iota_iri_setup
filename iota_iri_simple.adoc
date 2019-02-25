@@ -49,7 +49,7 @@ include::docker-compose.yml[]
 <8> Java min memory
 <9> Enables local API Port 14266
 
-If you can't use one of this Ports than you can change the host Port (left side).
+If you can't use one of this Ports, than you can change the host Port (left side).
 
 
 
@@ -58,3 +58,7 @@ If you can't use one of this Ports than you can change the host Port (left side)
 ----
 include::iri.ini[]
 ----
+<1> Remote API Port
+<2> UDP receiver port
+<3> TCP receiver port
+<4> IMPORTANT: Add Neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing` 
