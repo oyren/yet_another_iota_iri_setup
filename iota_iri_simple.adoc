@@ -1,0 +1,60 @@
+= Simple IOTA IRI Setup with Docker
+
+This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker. 
+
+There are already some good tutorials and Complete Setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup. 
+
+I'm using Debian 10 (Buster), so this tutorial will build on it, but with a few adjustments it should run on other systems as well.
+
+== Requirement
+
+* Server with a static IP Address
+* 4 GB RAM (preferable 8GB)
+* 2 cores (preferable 4 cores)
+* Some Disk Space (preferable SSD)
+
+
+I use a VPS (virtual private server) from https://contabo.com/?show=vps[Contabo], called 'VPS L SSD'.
+
+== Docker Installation
+
+First we need to install Docker and Docker-Compose.
+These steps are well documented on the official docker website, so I will just link to them.
+
+https://docs.docker.com/install/linux/docker-ce/debian/[Docker]
+
+https://docs.docker.com/compose/install/[Docker-Compose]
+
+== Setup
+Create folder structure (you can customize the location if you want):
+[source,bash]
+----
+mkdir -p /root/docker/iota_iri
+----
+
+WARNING: TODO Add wget Code blocks
+
+.docker-compose.yml
+[source,yml]
+----
+include::docker-compose.yml[]
+----
+<1> Bind host Port 14266 too Docker Port 14266 for Local API commands: Like list of neighbors.
+<2> Bind host Port 14265 too Docker Port 14265 for Remote API Commands
+<3> Bind host Port 14600 too Docker Port 14600 as UDP receiver port
+<4> Bind host Port 15600 too Docker Port 15600 as TCP receiver port
+<5> Transfer of the iota.ini file with read access.
+<6> Mount data point to save the database and logs.
+<7> IMPORTANT: You should change this! Here Java is configured how much memory it can take at maximum.
+<8> Java min Memory
+<9> enables Port 14266 as local API Port
+
+If you can't use one of this Ports than you can change the host Port (left side).
+
+
+
+.iri.ini
+[source,ini]
+----
+include::iri.ini[]
+----
