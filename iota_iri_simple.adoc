@@ -37,7 +37,28 @@ WARNING: TODO Add wget Code blocks
 .docker-compose.yml
 [source,yml]
 ----
-include::docker-compose.yml[]
+version: '3.3'
+services:
+        iri:
+                container_name: iota_iri
+                image: iotaledger/iri:latest
+                ports:
+                        # Local API Port
+                        - "127.0.0.1:14266:14266"                           # <1>
+                        # Remote API Port
+                        - "14265:14265"                                     # <2>
+                        - "14600:14600/udp"                                 # <3>
+                        - "15600:15600/tcp"                                 # <4>
+                volumes:
+                        - ./iri.ini:/iri/conf/iri.ini:ro                    # <5>
+                        - ./data:/iri/data:rw                               # <6>
+                environment:
+                        - JAVA_MAX_MEMORY=8192m                             # <7>
+                        - JAVA_MIN_MEMORY=256m                              # <8>
+                        - DOCKER_IRI_MONITORING_API_PORT_ENABLE=1           # <9>
+                restart: unless-stopped
+                command: ["-c", "/iri/conf/iri.ini"]
+                network_mode: "host"
 ----
 <1> Bind host Port 14266 too Docker Port 14266 for Local API commands: Like list of neighbors.
 <2> Bind host Port 14265 too Docker Port 14265 for Remote API Commands
@@ -51,14 +72,28 @@ include::docker-compose.yml[]
 
 If you can't use one of this Ports, than you can change the host Port (left side).
 
-
-
 .iri.ini
 [source,ini]
 ----
-include::iri.ini[]
+[IRI]
+PORT = 14265                    # <1>
+UDP_RECEIVER_PORT = 14600       # <2>
+TCP_RECEIVER_PORT = 15600       # <3>
+HEADLESS = true
+DEBUG = false
+TESTNET = false
+
+REMOTE_LIMIT_API = "removeNeighbors, addNeighbors, getNeighbors, setApiRateLimit"
+LOCAL_SNAPSHOTS_ENABLED = false
+
+NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <4>
 ----
 <1> Remote API Port
 <2> UDP receiver port
 <3> TCP receiver port
 <4> IMPORTANT: Add Neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing` 
+
+
+== Usage
+
+=== Update
