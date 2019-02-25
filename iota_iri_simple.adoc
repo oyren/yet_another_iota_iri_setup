@@ -26,13 +26,15 @@ https://docs.docker.com/install/linux/docker-ce/debian/[Docker]
 https://docs.docker.com/compose/install/[Docker-Compose]
 
 == Setup
-Create folder structure (you can customize the location if you want):
+Create folder structure (you can customize the location if you want) and download the two required files:
 [source,bash]
 ----
 mkdir -p /root/docker/iota_iri
+cd /root/docker/iota_iri
+wget https://raw.githubusercontent.com/oyren/knowledge/master/iota_iri/docker-compose.yml
+wget https://raw.githubusercontent.com/oyren/knowledge/master/iota_iri/iri.ini
 ----
 
-WARNING: TODO Add wget Code blocks
 
 .docker-compose.yml
 [source,yml]
@@ -95,5 +97,35 @@ NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <4
 
 
 == Usage
+.Start the Docker Container/IRI
+[source,bash]
+----
+docker-compose -f /root/docker/iota_iri/docker-compose.yml up -d
+----
+
+.Stop the Docker Container/IRI
+[source,bash]
+----
+docker-compose -f /root/docker/iota_iri/docker-compose.yml down
+----
+
+.Restart the Docker Container/IRI
+[source,bash]
+----
+docker-compose -f /root/docker/iota_iri/docker-compose.yml restart
+----
+
 
 === Update
+.Start the Docker Container/IRI
+[source,bash]
+----
+docker-compose -f /root/docker/iota_iri/docker-compose.yml down
+docker-compose -f /root/docker/iota_iri/docker-compose.yml up -d
+----
+
+=== Troubleshooting/Debugging
+[source,bash]
+----
+docker logs -f iota_iri
+----
