@@ -2,9 +2,9 @@
 
 This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker. 
 
-There are already some good tutorials and Complete Setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup. 
+There are already some good tutorials and complete setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup. 
 
-I'm using Debian 10 (Buster), so this tutorial will build on it, but with a few adjustments it should run on other systems as well.
+I'm using Debian 10 (Buster), so this setup is designed for it, but with a few adjustments it should run on other systems as well.
 
 == Requirement
 
@@ -14,7 +14,7 @@ I'm using Debian 10 (Buster), so this tutorial will build on it, but with a few 
 * Some Disk Space (preferable SSD)
 
 
-I use a VPS (virtual private server) from https://contabo.com/?show=vps[Contabo], called 'VPS L SSD'.
+I'm using a VPS (virtual private server) from https://contabo.com/?show=vps[Contabo], called 'VPS L SSD'.
 
 == Docker Installation
 
@@ -62,17 +62,17 @@ services:
                 command: ["-c", "/iri/conf/iri.ini"]
                 network_mode: "host"
 ----
-<1> Bind host Port 14266 too Docker Port 14266 for Local API commands: Like list of neighbors.
-<2> Bind host Port 14265 too Docker Port 14265 for Remote API Commands
-<3> Bind host Port 14600 too Docker Port 14600 as UDP receiver port
-<4> Bind host Port 15600 too Docker Port 15600 as TCP receiver port
-<5> Transfer of the iota.ini file with read access
-<6> Mount data point to save the database and logs
-<7> IMPORTANT: You should change this! Here JAVA is configured how much memory it can take at maximum
+<1> Bind host port 14266 to Docker port 14266 for local API commands: like listing neighbors
+<2> Bind host port 14265 to Docker port 14265 for remote API commands
+<3> Bind host port 14600 to Docker port 14600 as UDP receiver port
+<4> Bind host port 15600 to Docker port 15600 as TCP receiver port
+<5> Forward iri.ini with read access
+<6> Mount data folder to save the database and logs
+<7> IMPORTANT: You should change this! Here is the maximum amount of memory defined JAVA could use.
 <8> Java min memory
-<9> Enables local API Port 14266
+<9> Enables local API port 14266
 
-If you can't use one of this Ports, than you can change the host Port (left side).
+If you can't use one of this ports, you can change the host Port (left side) then.
 
 .iri.ini
 [source,ini]
@@ -90,10 +90,10 @@ LOCAL_SNAPSHOTS_ENABLED = false
 
 NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <4>
 ----
-<1> Remote API Port
+<1> Remote API port
 <2> UDP receiver port
 <3> TCP receiver port
-<4> IMPORTANT: Add Neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing` 
+<4> IMPORTANT: Add neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing` 
 
 
 == Usage
