@@ -7,7 +7,7 @@ This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker.
 
 There are already some good tutorials and complete setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup.
 
-I'm using Debian 10 (Buster), so this setup is designed for it, but with a few adjustments it should run on other systems as well.
+I'm using Debian 10 (Buster), so this setup is designed for it, but with a few to no adjustments it should run on other systems as well.
 
 toc::[]
 
