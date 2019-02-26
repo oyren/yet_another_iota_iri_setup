@@ -1,8 +1,8 @@
 = Simple IOTA IRI Setup with Docker
 
-This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker. 
+This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker.
 
-There are already some good tutorials and complete setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup. 
+There are already some good tutorials and complete setups, such as https://github.com/nuriel77/iri-playbook[IRI Playbook] and https://iota.partners[IOTA Partners]. However, they do much more than just provide an IOTA IRI, so here is my simple and minimalist setup.
 
 I'm using Debian 10 (Buster), so this setup is designed for it, but with a few adjustments it should run on other systems as well.
 
@@ -31,8 +31,8 @@ Create folder structure (you can customize the location if you want) and downloa
 ----
 mkdir -p /root/docker/iota_iri
 cd /root/docker/iota_iri
-wget https://raw.githubusercontent.com/oyren/knowledge/master/iota_iri/docker-compose.yml
-wget https://raw.githubusercontent.com/oyren/knowledge/master/iota_iri/iri.ini
+wget https://raw.githubusercontent.com/oyren/yet_another_iota_iri_setup/master/docker-compose.yml
+wget https://raw.githubusercontent.com/oyren/yet_another_iota_iri_setup/master/iri.ini
 ----
 
 
@@ -93,7 +93,7 @@ NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <4
 <1> Remote API port
 <2> UDP receiver port
 <3> TCP receiver port
-<4> IMPORTANT: Add neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing` 
+<4> IMPORTANT: Add neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing`
 
 
 == Usage
