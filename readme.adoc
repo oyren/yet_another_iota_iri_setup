@@ -54,28 +54,26 @@ services:
                         - "127.0.0.1:14266:14266"                           # <1>
                         # Remote API Port
                         - "14265:14265"                                     # <2>
-                        - "14600:14600/udp"                                 # <3>
-                        - "15600:15600/tcp"                                 # <4>
+                        - "15600:15600/tcp"                                 # <3>
                 volumes:
-                        - ./iri.ini:/iri/conf/iri.ini:ro                    # <5>
-                        - ./data:/iri/data:rw                               # <6>
+                        - ./iri.ini:/iri/conf/iri.ini:ro                    # <4>
+                        - ./data:/iri/data:rw                               # <5>
                 environment:
-                        - JAVA_MAX_MEMORY=8192m                             # <7>
-                        - JAVA_MIN_MEMORY=256m                              # <8>
-                        - DOCKER_IRI_MONITORING_API_PORT_ENABLE=1           # <9>
+                        - JAVA_MAX_MEMORY=8192m                             # <6>
+                        - JAVA_MIN_MEMORY=256m                              # <7>
+                        - DOCKER_IRI_MONITORING_API_PORT_ENABLE=1           # <8>
                 restart: unless-stopped
                 command: ["-c", "/iri/conf/iri.ini"]
                 network_mode: "host"
 ----
 <1> Bind host port 14266 to Docker port 14266 for local API commands: like listing neighbors
 <2> Bind host port 14265 to Docker port 14265 for remote API commands
-<3> Bind host port 14600 to Docker port 14600 as UDP receiver port
-<4> Bind host port 15600 to Docker port 15600 as TCP receiver port
-<5> Forward iri.ini with read access
-<6> Mount data folder to save the database and logs
-<7> IMPORTANT: You should change this! Here is the maximum amount of memory defined JAVA could use.
-<8> Java min memory
-<9> Enables local API port 14266
+<3> Bind host port 15600 to Docker port 15600 as TCP receiver port
+<4> Forward iri.ini with read access
+<5> Mount data folder to save the database and logs
+<6> IMPORTANT: You should change this! Here is the maximum amount of memory defined JAVA could use.
+<7> Java min memory
+<8> Enables local API port 14266
 
 If you can't use one of this ports, you can change the host Port (left side) then.
 
@@ -84,21 +82,26 @@ If you can't use one of this ports, you can change the host Port (left side) the
 ----
 [IRI]
 PORT = 14265                    # <1>
-UDP_RECEIVER_PORT = 14600       # <2>
-TCP_RECEIVER_PORT = 15600       # <3>
+NEIGHBORING_SOCKET_PORT = 15600 # <2>
 HEADLESS = true
 DEBUG = false
 TESTNET = false
 
+LOCAL_SNAPSHOTS_ENABLED = true
+LOCAL_SNAPSHOTS_PRUNING_ENABLED = true
+LOCAL_SNAPSHOTS_DEPTH = 200
+LOCAL_SNAPSHOTS_PRUNING_DELAY = 40000
+LOCAL_SNAPSHOTS_INTERVAL_SYNCED = 100
+LOCAL_SNAPSHOTS_INTERVAL_UNSYNCED = 1000
+
 REMOTE_LIMIT_API = "removeNeighbors, addNeighbors, getNeighbors, setApiRateLimit"
 LOCAL_SNAPSHOTS_ENABLED = false
 
-NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <4>
+NEIGHBORS = udp://first.neighbor.com:14600 udp://second.neighbor.com:14600  # <3>
 ----
 <1> Remote API port
-<2> UDP receiver port
-<3> TCP receiver port
-<4> IMPORTANT: Add neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing`
+<2> TCP receiver port
+<3> IMPORTANT: Add neighbors here. You can find some in the https://discord.gg/PshQfX3[IOTA Discord] under `#nodesharing`
 
 
 == Usage
