@@ -8,7 +8,6 @@ services:
                         - "127.0.0.1:14266:14266"
                         # Remote API Port
                         - "14265:14265"
-                        - "14600:14600/udp"
                         - "15600:15600/tcp"
                 volumes:
                         - ./iri.ini:/iri/conf/iri.ini:ro
