@@ -1,6 +1,10 @@
 :toc:
 :toc-placement!:
 
+= IRI was replaced by https://github.com/gohornet/hornet[Hornet] with the Chrysalis (IOTA 1.5) update.
+
+WARNING: You should not use this anymore.
+
 = Simple IOTA IRI Setup with Docker
 
 This is my simple setup of IOTA IRI (IOTA Reference Implementation) with Docker.
